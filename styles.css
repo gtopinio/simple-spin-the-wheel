@@ -84,3 +84,21 @@ body {
     user-select: none;
     cursor: pointer;
 }
+
+.container .wheel .number span
+{
+    position: relative;
+    transform: rotate(45deg);
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 3px 5px 2px rgba(0,0,0,0.15);
+}
+
+.container .wheel .number span::after
+{
+    content: '$';
+    position: absolute;
+    font-size: 0.75em;
+    font-weight: 500;
+}
