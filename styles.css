@@ -99,7 +99,6 @@ body {
 
 .container .wheel .number span::after
 {
-    content: '$';
     position: absolute;
     font-size: 0.75em;
     font-weight: 500;

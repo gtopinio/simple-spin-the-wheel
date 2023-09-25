@@ -2,17 +2,18 @@ let wheel = document.querySelector('.wheel');
 let spinBtn = document.querySelector('.spinBtn');
 let value = 0; // Start at 0 degrees
 
-// Array of numbers for the wheel
+// Array of numbers and questions for the wheel
 let numbers = [
-    { value: 101, color: '#db7093' },
-    { value: 1, color: '#20b2aa' },
-    { value: 50, color: '#d63e92' },
-    { value: 0, color: '#daa520' },
-    { value: 1000, color: '#ff340f' },
-    { value: 10, color: '#ff7f50' },
-    { value: 5, color: '#3cb371' },
-    { value: 20, color: '#4169e1' },
+    { value: 'A', question: 'What is the capital of France?', color: '#db7093' },
+    { value: 'B', question: 'Who wrote the play "Romeo and Juliet"?', color: '#20b2aa' },
+    { value: 'C', question: 'What is the chemical symbol for gold?', color: '#d63e92' },
+    { value: 'D', question: 'What is the largest planet in our solar system?', color: '#daa520' },
+    { value: 'E', question: 'What is the tallest mountain on Earth?', color: '#ff340f' },
+    { value: 'F', question: 'Who painted the Mona Lisa?', color: '#ff7f50' },
+    { value: 'G', question: 'What is the symbol for the element oxygen?', color: '#3cb371' },
+    { value: 'H', question: 'What is the largest mammal on Earth?', color: '#4169e1' },
 ];
+
 
 // Function to create a number element
 function createNumberElement(number, index) {
@@ -60,7 +61,9 @@ spinBtn.addEventListener('click', () => {
             // Display the result in the modal
             let modal = document.getElementById('myModal');
             let resultNumberElement = document.getElementById('resultNumber');
-            resultNumberElement.textContent = resultNumber.value;
+            let resultQuestionElement = document.getElementById('resultQuestion'); // Added this line
+            resultNumberElement.textContent = "Question " +  resultNumber.value + ": ";
+            resultQuestionElement.textContent = resultNumber.question; // Display the question
             modal.style.display = 'block';
         }
     });
