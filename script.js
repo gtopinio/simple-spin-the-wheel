@@ -66,9 +66,43 @@ spinBtn.addEventListener('click', () => {
     });
 });
 
+// Function to make the modal draggable
+function dragModal(modal) {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    // Handle the mouse down event on the modal header
+    modal.querySelector('.modal-content').addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - modal.offsetLeft;
+        offsetY = e.clientY - modal.offsetTop;
+        modal.style.cursor = 'grabbing';
+    });
+
+    // Handle the mouse up event
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            modal.style.cursor = 'grab';
+        }
+    });
+
+    // Handle the mouse move event
+    window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            modal.style.left = e.clientX - offsetX + 'px';
+            modal.style.top = e.clientY - offsetY + 'px';
+        }
+    });
+}
+
 // Close the modal when the close button is clicked
 let closeModal = document.getElementById('closeModal');
 closeModal.addEventListener('click', () => {
     let modal = document.getElementById('myModal');
     modal.style.display = 'none';
 });
+
+// Initialize modal drag-and-drop
+let modal = document.getElementById('myModal');
+dragModal(modal);
