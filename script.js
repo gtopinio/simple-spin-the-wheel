@@ -1,6 +1,6 @@
 let wheel = document.querySelector('.wheel');
 let spinBtn = document.querySelector('.spinBtn');
-let value = Math.floor(Math.random() * 3600);
+let value = 0; // Start at 0 degrees
 
 // Array of numbers for the wheel
 let numbers = [
@@ -31,6 +31,44 @@ numbers.forEach((number, index) => {
 });
 
 spinBtn.addEventListener('click', () => {
+    // Disable the spin button during animation
+    spinBtn.disabled = true;
+
+    // Simulate spinning animation
+    let randomRotation = Math.floor(Math.random() * 3600) + 360; // At least one full rotation
+    value += randomRotation;
+    wheel.style.transition = 'transform 5s ease-in-out';
     wheel.style.transform = `rotate(${value}deg)`;
-    value += Math.floor(Math.random() * 3600);
+
+    // Add an event listener to check when the animation ends
+    wheel.addEventListener('transitionend', () => {
+        // Enable the spin button
+        spinBtn.disabled = false;
+
+        // Calculate the angle where the pointer is pointing
+        let pointerAngle = (360 - (value % 360) - 90) % 360; // Adjust for the pointer at the top
+        if (pointerAngle < 0) pointerAngle += 360;
+
+        // Find the corresponding number
+        let resultNumber = numbers.find((number, index) => {
+            let startAngle = (index * 45);
+            let endAngle = ((index + 1) * 45);
+            return pointerAngle >= startAngle && pointerAngle < endAngle;
+        });
+
+        if (resultNumber) {
+            // Display the result in the modal
+            let modal = document.getElementById('myModal');
+            let resultNumberElement = document.getElementById('resultNumber');
+            resultNumberElement.textContent = resultNumber.value;
+            modal.style.display = 'block';
+        }
+    });
+});
+
+// Close the modal when the close button is clicked
+let closeModal = document.getElementById('closeModal');
+closeModal.addEventListener('click', () => {
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'none';
 });
