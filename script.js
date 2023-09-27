@@ -38,7 +38,7 @@ spinBtn.addEventListener('click', () => {
     // Simulate spinning animation
     let randomRotation = Math.floor(Math.random() * 3600) + 360; // At least one full rotation
     value += randomRotation;
-    wheel.style.transition = 'transform 5s ease-in-out';
+    wheel.style.transition = 'transform 2s ease-in-out';
     wheel.style.transform = `rotate(${value}deg)`;
 
     // Add an event listener to check when the animation ends

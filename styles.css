@@ -108,10 +108,10 @@ body {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 30%;
-    height: 80%;
+    right: -5%;
+    top: 5%;
+    width: 40%;
+    height: 100%;
     user-select: none;
 }
 
